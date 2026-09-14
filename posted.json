@@ -5,5 +5,11 @@
       "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
       "threads": "18110047586468695"
     }
+  },
+  "0914-x10": {
+    "at": "2026-09-14T10:00:42.229364+09:00",
+    "results": {
+      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint."
+    }
   }
 }

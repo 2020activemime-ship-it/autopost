@@ -5,7 +5,7 @@ schedule.json の1件の形：
   {
     "id": "0914-am",
     "at": "2026-09-14T07:30:00",          # JST
-    "platforms": ["x", "threads"],
+    "platforms": ["x", "threads", "instagram"],
     "text": "共通の本文",
     "text_x": "Xだけ別の本文（任意）",
     "text_threads": "Threadsだけ別の本文（任意・500字まで）",
@@ -145,6 +145,17 @@ def check_credentials() -> None:
             print("x: NG", e)
     else:
         print("x: (X の鍵が未設定)")
+    ig_uid, ig_tok = os.environ.get("IG_USER_ID"), os.environ.get("IG_ACCESS_TOKEN")
+    if ig_uid and ig_tok:
+        try:
+            r = requests.get(f"https://graph.facebook.com/v21.0/{ig_uid}",
+                             params={"fields": "username", "access_token": ig_tok}, timeout=30)
+            j = r.json()
+            print("instagram:", "OK @" + j["username"] if "username" in j else f"NG {j}")
+        except Exception as e:
+            print("instagram: NG", e)
+    else:
+        print("instagram: (IG_USER_ID / IG_ACCESS_TOKEN 未設定)")
     print("image_base_url:", os.environ.get("IMAGE_BASE_URL") or "(未設定)")
 
 
@@ -169,7 +180,44 @@ def lint_schedule(schedule: list) -> list:
     return problems
 
 
-POSTERS = {"x": post_x, "threads": post_threads}
+
+def post_instagram(text: str, image: str | None = None) -> str:
+    """Instagram投稿。画像が必須（IG APIの仕様）。IMAGE_BASE_URL の公開URLを使う"""
+    if len(text) > 2200:
+        raise ValueError(f"IGキャプション超過（{len(text)}/2200）")
+    if not image:
+        raise ValueError("Instagramは画像が必須です（imageを指定してください）")
+    if DRY_RUN:
+        return f"DRY ig: {text[:30]}… image={image}"
+    uid = os.environ["IG_USER_ID"]
+    tok = os.environ["IG_ACCESS_TOKEN"]
+    img_base = os.environ.get("IMAGE_BASE_URL", "").rstrip("/")
+    if not img_base:
+        raise ValueError("IMAGE_BASE_URL が未設定です")
+    base = f"https://graph.facebook.com/v21.0/{uid}"
+
+    r = requests.post(f"{base}/media", data={
+        "image_url": f"{img_base}/{os.path.basename(image)}",
+        "caption": text,
+        "access_token": tok,
+    }, timeout=60)
+    r.raise_for_status()
+    creation_id = r.json()["id"]
+
+    # 画像処理の完了を待ってから公開
+    last = None
+    for _ in range(10):
+        time.sleep(5)
+        r2 = requests.post(f"{base}/media_publish",
+                           data={"creation_id": creation_id, "access_token": tok}, timeout=60)
+        if r2.ok:
+            return str(r2.json()["id"])
+        last = r2
+    last.raise_for_status()
+    return ""
+
+
+POSTERS = {"x": post_x, "threads": post_threads, "instagram": post_instagram}
 
 
 def main() -> int:

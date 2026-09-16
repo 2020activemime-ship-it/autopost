@@ -146,16 +146,16 @@ def check_credentials() -> None:
     else:
         print("x: (X の鍵が未設定)")
     ig_uid, ig_tok = os.environ.get("IG_USER_ID"), os.environ.get("IG_ACCESS_TOKEN")
-    if ig_uid and ig_tok:
+    if ig_tok:
         try:
-            r = requests.get(f"https://graph.facebook.com/v21.0/{ig_uid}",
+            r = requests.get(f"https://graph.instagram.com/v21.0/{ig_uid or 'me'}",
                              params={"fields": "username", "access_token": ig_tok}, timeout=30)
             j = r.json()
             print("instagram:", "OK @" + j["username"] if "username" in j else f"NG {j}")
         except Exception as e:
             print("instagram: NG", e)
     else:
-        print("instagram: (IG_USER_ID / IG_ACCESS_TOKEN 未設定)")
+        print("instagram: (IG_ACCESS_TOKEN 未設定)")
     print("image_base_url:", os.environ.get("IMAGE_BASE_URL") or "(未設定)")
 
 
@@ -189,12 +189,12 @@ def post_instagram(text: str, image: str | None = None) -> str:
         raise ValueError("Instagramは画像が必須です（imageを指定してください）")
     if DRY_RUN:
         return f"DRY ig: {text[:30]}… image={image}"
-    uid = os.environ["IG_USER_ID"]
+    uid = os.environ.get("IG_USER_ID") or "me"
     tok = os.environ["IG_ACCESS_TOKEN"]
     img_base = os.environ.get("IMAGE_BASE_URL", "").rstrip("/")
     if not img_base:
         raise ValueError("IMAGE_BASE_URL が未設定です")
-    base = f"https://graph.facebook.com/v21.0/{uid}"
+    base = f"https://graph.instagram.com/v21.0/{uid}"
 
     r = requests.post(f"{base}/media", data={
         "image_url": f"{img_base}/{os.path.basename(image)}",

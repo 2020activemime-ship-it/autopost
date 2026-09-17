@@ -2,7 +2,9 @@ name: autopost
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # 15分ごと（UTC基準。post.py側でJST判定）
+    - cron: "*/15 * * * *"   # 保険（GitHubの無料枠では遅延・間引きされる）
+  repository_dispatch:        # 外部の時報サービス（cron-job.org）から正確に起動
+    types: [tick]
   workflow_dispatch:          # 手動実行ボタン
     inputs:
       dry_run:

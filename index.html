@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>投稿ステータス｜AIにやらせる女</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root{
+    --bg:#fdf6f1; --card:#fffdfb; --card2:#fbeef0;
+    --ink:#3f3330; --muted:#8a7a72; --line:#eed9d4;
+    --gold:#b8934a; --sakura:#d98aa0;
+    --ok:#3f8a5f; --ok-bg:#e4f0e8;
+    --ng:#c0503e; --ng-bg:#f7e3df;
+    --wait:#9a8b7e; --wait-bg:#f0eae3;
+    --soon:#5a7d95; --soon-bg:#e3edf3;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#1f191d; --card:#2a2228; --card2:#322730;
+      --ink:#f3e7e4; --muted:#bda8a2; --line:#3d2f37;
+      --gold:#d8bd7c; --sakura:#e6a3b6;
+      --ok:#8fbf9d; --ok-bg:#243027;
+      --ng:#e59180; --ng-bg:#3a2622;
+      --wait:#a89a8d; --wait-bg:#2c2723;
+      --soon:#9dbccd; --soon-bg:#232f37;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);padding:0 14px;
+    font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.7;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding-block:26px 60px}
+  header{display:flex;flex-direction:column;gap:4px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  h1{font-family:"Shippori Mincho",serif;font-size:1.35rem;margin:0;letter-spacing:.06em}
+  .sub{color:var(--muted);font-size:.8rem}
+  .clock{font-family:"JetBrains Mono",monospace;color:var(--gold);font-size:.82rem}
+
+  .today{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .today h2{font-family:"Shippori Mincho",serif;font-size:1rem;margin:0;padding:13px 16px;
+    background:var(--card2);border-bottom:1px solid var(--line);letter-spacing:.05em}
+  .slot{display:flex;align-items:center;gap:10px;padding:11px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .slot:first-of-type{border-top:none}
+  .slot .t{font-family:"JetBrains Mono",monospace;font-size:.86rem;color:var(--gold);min-width:46px}
+  .slot .chips{display:flex;gap:5px;flex-wrap:wrap;flex:1}
+  .chip{font-size:.7rem;padding:3px 8px;border-radius:99px;white-space:nowrap;font-weight:500}
+  .c-ok{color:var(--ok);background:var(--ok-bg)}
+  .c-ng{color:var(--ng);background:var(--ng-bg)}
+  .c-wait{color:var(--wait);background:var(--wait-bg)}
+  .c-soon{color:var(--soon);background:var(--soon-bg)}
+  .slot .txt{width:100%;font-size:.78rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  .sum{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:9px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 10px;text-align:center}
+  .kpi .n{font-family:"JetBrains Mono",monospace;font-size:1.4rem;line-height:1.2}
+  .kpi .l{font-size:.68rem;color:var(--muted);letter-spacing:.04em;margin-top:2px}
+
+  h3{font-family:"Shippori Mincho",serif;font-size:.95rem;margin:26px 0 9px;letter-spacing:.05em}
+  .days{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .day{display:flex;align-items:center;gap:12px;padding:11px 16px;border-top:1px solid var(--line)}
+  .day:first-child{border-top:none}
+  .day .d{font-family:"JetBrains Mono",monospace;font-size:.82rem;min-width:52px;color:var(--muted)}
+  .bars{display:flex;gap:3px;flex:1;flex-wrap:wrap}
+  .bar{width:9px;height:9px;border-radius:2px}
+  .b-ok{background:var(--ok)} .b-ng{background:var(--ng)} .b-wait{background:var(--wait);opacity:.4}
+  .day .c{font-family:"JetBrains Mono",monospace;font-size:.76rem;color:var(--muted)}
+
+  .plat{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .prow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-top:1px solid var(--line)}
+  .prow:first-of-type{border-top:none}
+  .prow b{font-weight:500;font-size:.9rem}
+  .prow small{display:block;color:var(--muted);font-size:.72rem}
+
+  footer{margin-top:26px;text-align:center;color:var(--muted);font-size:.72rem;line-height:1.9}
+  .refresh{display:inline-block;margin-top:10px;font-family:"JetBrains Mono",monospace;font-size:.72rem;
+    color:var(--gold);border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 16px;cursor:pointer}
+  .loading{padding:28px 16px;text-align:center;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>投稿ステータス</h1>
+    <div class="sub">AIにやらせる女 ／ 自動投稿の稼働状況</div>
+    <div class="clock" id="clock">読み込み中…</div>
+  </header>
+
+  <div class="today">
+    <h2 id="todayTitle">今日の投稿</h2>
+    <div id="todayBody"><div class="loading">読み込み中…</div></div>
+  </div>
+
+  <div class="sum" id="kpis"></div>
+
+  <h3>直近7日間</h3>
+  <div class="days" id="days"><div class="loading">読み込み中…</div></div>
+
+  <h3>SNSごとの状態</h3>
+  <div class="plat" id="plat"></div>
+
+  <footer>
+    <div>15分ごとに自動で投稿されます。<br>この画面は開くたびに最新を読み込みます。</div>
+    <span class="refresh" id="btn">更新する</span>
+  </footer>
+</div>
+
+<script>
+const JP = t => new Date(t).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo"});
+const NAMES = {x:"X", threads:"Threads", instagram:"Instagram", tiktok:"TikTok"};
+
+function jstNow(){
+  const s = new Date().toLocaleString("en-US",{timeZone:"Asia/Tokyo"});
+  return new Date(s);
+}
+function keyOf(d){ return `${d.getMonth()+1}/${d.getDate()}`; }
+function dateStr(iso){ const d=new Date(iso); return `${d.getMonth()+1}/${d.getDate()}`; }
+function timeStr(iso){ return iso.slice(11,16); }
+
+function statusOf(item, plat, posted, now){
+  const rec = posted[item.id];
+  const when = new Date(item.at.replace(" ","T"));
+  if(rec){
+    const r = rec.results || {};
+    if(r.skipped && r[plat]===undefined) return ["skip","見送り"];
+    const v = r[plat];
+    if(v===undefined) return r.skipped ? ["skip","見送り"] : ["wait","待機"];
+    return String(v).startsWith("ERROR") ? ["ng","失敗"] : ["ok","投稿済み"];
+  }
+  return when > now ? ["soon","予定"] : ["wait","実行待ち"];
+}
+
+async function load(){
+  const bust = "?t=" + Date.now();
+  const [sch, pos] = await Promise.all([
+    fetch("schedule.json"+bust).then(r=>r.json()),
+    fetch("posted.json"+bust).then(r=>r.json()).catch(()=>({}))
+  ]);
+  const now = jstNow();
+  document.getElementById("clock").textContent =
+    "最終確認 " + now.toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"});
+
+  const todayKey = keyOf(now);
+  const today = sch.filter(i => dateStr(i.at) === todayKey).sort((a,b)=>a.at.localeCompare(b.at));
+  document.getElementById("todayTitle").textContent = `今日の投稿（${todayKey}）`;
+
+  const body = document.getElementById("todayBody");
+  if(!today.length){
+    body.innerHTML = '<div class="loading">今日の予定はありません。<br>次の週の投稿を追加してください。</div>';
+  } else {
+    body.innerHTML = today.map(i=>{
+      const chips = i.platforms.map(p=>{
+        const [k,label] = statusOf(i,p,pos,now);
+        return `<span class="chip c-${k==='skip'?'wait':k}">${NAMES[p]||p} ${label}</span>`;
+      }).join("");
+      const t = (i.text||"").split("\n")[0];
+      return `<div class="slot"><span class="t">${timeStr(i.at)}</span>
+        <span class="chips">${chips}</span>
+        <span class="txt">${t}</span></div>`;
+    }).join("");
+  }
+
+  // KPI（今日）
+  let ok=0,ng=0,rest=0;
+  today.forEach(i=>i.platforms.forEach(p=>{
+    const [k]=statusOf(i,p,pos,now);
+    if(k==="ok") ok++; else if(k==="ng") ng++; else rest++;
+  }));
+  document.getElementById("kpis").innerHTML = `
+    <div class="kpi"><div class="n" style="color:var(--ok)">${ok}</div><div class="l">投稿済み</div></div>
+    <div class="kpi"><div class="n" style="color:var(--ng)">${ng}</div><div class="l">失敗</div></div>
+    <div class="kpi"><div class="n" style="color:var(--muted)">${rest}</div><div class="l">これから</div></div>
+    <div class="kpi"><div class="n" style="color:var(--gold)">${sch.length}</div><div class="l">仕込み総数</div></div>`;
+
+  // 直近7日
+  const days=[];
+  for(let d=6; d>=0; d--){
+    const dt=new Date(now); dt.setDate(dt.getDate()-d);
+    const k=keyOf(dt);
+    const items=sch.filter(i=>dateStr(i.at)===k);
+    if(!items.length) continue;
+    let marks=[],o=0,n=0;
+    items.sort((a,b)=>a.at.localeCompare(b.at)).forEach(i=>i.platforms.forEach(p=>{
+      const [s]=statusOf(i,p,pos,now);
+      marks.push(s==="ok"?"b-ok":s==="ng"?"b-ng":"b-wait");
+      if(s==="ok")o++; if(s==="ng")n++;
+    }));
+    days.push(`<div class="day"><span class="d">${k}</span>
+      <span class="bars">${marks.map(m=>`<span class="bar ${m}"></span>`).join("")}</span>
+      <span class="c">${o}/${marks.length}</span></div>`);
+  }
+  document.getElementById("days").innerHTML = days.join("") || '<div class="loading">データがありません</div>';
+
+  // SNSごと
+  const used = new Set(); sch.forEach(i=>i.platforms.forEach(p=>used.add(p)));
+  const rows = [
+    ["x","X", used.has("x")],
+    ["threads","Threads", used.has("threads")],
+    ["instagram","Instagram", used.has("instagram")],
+    ["tiktok","TikTok", used.has("tiktok")],
+  ].map(([id,name,on])=>{
+    let o=0,g=0;
+    sch.forEach(i=>{ if(i.platforms.includes(id)){ const [s]=statusOf(i,id,pos,now); if(s==="ok")o++; if(s==="ng")g++; }});
+    const note = on
+      ? `これまで ${o}件成功${g?` ／ ${g}件失敗`:""}`
+      : (id==="tiktok" ? "未接続（動画が必要。公式の予約投稿で運用）" : "準備中（設定が完了すると自動で入ります）");
+    return `<div class="prow"><div><b>${name}</b><small>${note}</small></div>
+      <span class="chip ${on?'c-ok':'c-wait'}">${on?'稼働中':'未稼働'}</span></div>`;
+  }).join("");
+  document.getElementById("plat").innerHTML = rows;
+}
+
+document.getElementById("btn").addEventListener("click", ()=>{
+  document.getElementById("btn").textContent="更新中…";
+  load().finally(()=>document.getElementById("btn").textContent="更新する");
+});
+load().catch(e=>{
+  document.getElementById("todayBody").innerHTML =
+    '<div class="loading">読み込みに失敗しました。<br>少し待ってから「更新する」を押してください。</div>';
+});
+setInterval(load, 5*60*1000);
+</script>
+</body>
+</html>

@@ -2,8 +2,8 @@ name: autopost
 
 on:
   schedule:
-    # JST 06:00〜23:00 の毎時（UTC表記）。1回起動すれば中で見張り続けるので、起動が遅れても平気
-    - cron: "0 0-14,21-23 * * *"
+    # JST 04:00〜23:00 の毎時（UTC表記）。1回起動すれば中で見張り続けるので、起動が遅れても平気
+    - cron: "0 0-14,19-23 * * *"
   repository_dispatch:
     types: [tick]
   workflow_dispatch:

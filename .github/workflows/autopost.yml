@@ -2,10 +2,11 @@ name: autopost
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # 保険（GitHubの無料枠では遅延・間引きされる）
-  repository_dispatch:        # 外部の時報サービス（cron-job.org）から正確に起動
+    # JST 06:00〜23:00 の毎時（UTC表記）。1回起動すれば中で見張り続けるので、起動が遅れても平気
+    - cron: "0 0-14,21-23 * * *"
+  repository_dispatch:
     types: [tick]
-  workflow_dispatch:          # 手動実行ボタン
+  workflow_dispatch:        # 手動実行 = その場で1回だけ実行（見張りはしない）
     inputs:
       dry_run:
         description: "1=投稿せず鍵チェックだけ / 0=本番"
@@ -14,17 +15,23 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  # 見張り役は常に1つだけ。手動実行は別枠なのですぐ動く
+  group: autopost-${{ github.event_name == 'workflow_dispatch' && 'manual' || 'watch' }}
+  cancel-in-progress: false
+
 jobs:
   post:
     runs-on: ubuntu-latest
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - name: post due items
-        run: python post.py
+
+      - name: watch and post
         env:
           X_API_KEY: ${{ secrets.X_API_KEY }}
           X_API_SECRET: ${{ secrets.X_API_SECRET }}
@@ -36,14 +43,34 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IMAGE_BASE_URL: ${{ secrets.IMAGE_BASE_URL }}
           DRY_RUN: ${{ github.event.inputs.dry_run || '0' }}
-      - name: save posted state
+          EVENT_NAME: ${{ github.event_name }}
         run: |
-          if [ -f posted.json ]; then
-            git config user.name "autopost-bot"
-            git config user.email "autopost-bot@users.noreply.github.com"
-            git add posted.json
-            if ! git diff --cached --quiet; then
-              git commit -m "chore: record posted items"
-              git push
+          git config user.name  "autopost-bot"
+          git config user.email "autopost-bot@users.noreply.github.com"
+
+          # 手動実行は1回だけ。自動起動のときは最長5時間45分ぶん見張る
+          WATCH_MIN=345
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then WATCH_MIN=0; fi
+
+          NOW=$(date +%s)
+          END=$(( NOW + WATCH_MIN * 60 ))
+          NIGHT=$(TZ=Asia/Tokyo date -d "today 23:10" +%s)   # 深夜は見張らない
+          if [ "$END" -gt "$NIGHT" ]; then END=$NIGHT; fi
+
+          while : ; do
+            echo "--- tick $(TZ=Asia/Tokyo date '+%m/%d %H:%M JST') ---"
+            python post.py || echo "post.py returned non-zero (continue)"
+
+            if [ -f posted.json ]; then
+              git add posted.json
+              if ! git diff --cached --quiet; then
+                git commit -m "chore: record posted items"
+                git pull --rebase --autostash || true
+                git push || echo "push failed (retry next tick)"
+              fi
             fi
-          fi
+
+            [ "$(date +%s)" -ge "$END" ] && break
+            sleep 180                       # 3分おきに確認
+          done
+          echo "watch finished"

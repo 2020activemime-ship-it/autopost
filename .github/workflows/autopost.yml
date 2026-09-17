@@ -6,18 +6,21 @@ on:
     - cron: "0 0-14,21-23 * * *"
   repository_dispatch:
     types: [tick]
-  workflow_dispatch:        # 手動実行 = その場で1回だけ実行（見張りはしない）
+  workflow_dispatch:
     inputs:
       dry_run:
         description: "1=投稿せず鍵チェックだけ / 0=本番"
         default: "1"
+      watch:
+        description: "1=見張りモードで今すぐ開始 / 0=1回だけ実行"
+        default: "0"
 
 permissions:
   contents: write
 
 concurrency:
-  # 見張り役は常に1つだけ。手動実行は別枠なのですぐ動く
-  group: autopost-${{ github.event_name == 'workflow_dispatch' && 'manual' || 'watch' }}
+  # 見張り役は常に1つだけ。1回だけの手動実行は別枠なのですぐ動く
+  group: autopost-${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.watch != '1') && 'manual' || 'watch' }}
   cancel-in-progress: false
 
 jobs:
@@ -44,13 +47,15 @@ jobs:
           IMAGE_BASE_URL: ${{ secrets.IMAGE_BASE_URL }}
           DRY_RUN: ${{ github.event.inputs.dry_run || '0' }}
           EVENT_NAME: ${{ github.event_name }}
+          WATCH_INPUT: ${{ github.event.inputs.watch || '0' }}
         run: |
           git config user.name  "autopost-bot"
           git config user.email "autopost-bot@users.noreply.github.com"
 
-          # 手動実行は1回だけ。自動起動のときは最長5時間45分ぶん見張る
-          WATCH_MIN=345
-          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then WATCH_MIN=0; fi
+          WATCH_MIN=345   # 自動起動なら最長5時間45分ぶん見張る
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$WATCH_INPUT" != "1" ]; then
+            WATCH_MIN=0   # 手動の「1回だけ実行」
+          fi
 
           NOW=$(date +%s)
           END=$(( NOW + WATCH_MIN * 60 ))

@@ -65,6 +65,10 @@ jobs:
           while : ; do
             echo "--- tick $(TZ=Asia/Tokyo date '+%m/%d %H:%M JST') ---"
 
+            # 予定表はGitHub上の最新を毎回読み直す（実行中に追加した投稿もその回から反映される）
+            git fetch origin main -q || true
+            git checkout origin/main -- schedule.json 2>/dev/null || true
+
             # 記録ファイルが壊れていたら、GitHub上の正しいものに戻す（壊れたままだと毎回失敗し続けるため）
             if ! python -c "import json;json.load(open('posted.json'))" 2>/dev/null; then
               echo "posted.json が壊れています → GitHub上の内容に戻します"

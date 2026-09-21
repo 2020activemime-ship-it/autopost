@@ -82,11 +82,11 @@ def post_x(text: str, image: str | None = None) -> str:
     return str(r.data["id"])
 
 
-def post_threads(text: str, image: str | None = None) -> str:
+def post_threads(text: str, image: str | None = None, topic: str | None = None) -> str:
     if len(text) > 500:
         raise ValueError(f"Threads文字数オーバー（{len(text)}/500）")
     if DRY_RUN:
-        return f"DRY threads: {text[:30]}… image={image}"
+        return f"DRY threads: {text[:30]}… image={image} topic={topic}"
     uid = os.environ.get("THREADS_USER_ID") or "me"  # 未設定なら "me"（自分）でOK
     tok = os.environ["THREADS_ACCESS_TOKEN"]
     base = f"https://graph.threads.net/v1.0/{uid}"
@@ -98,8 +98,16 @@ def post_threads(text: str, image: str | None = None) -> str:
             data["image_url"] = f"{img_base}/{os.path.basename(image)}"
         else:
             print("[threads] IMAGE_BASE_URL not set, posting text only")
+    if topic:
+        # トピックタグ：同じ話題を見ている人のおすすめに出やすくなる（1投稿に1つ）
+        data["topic_tag"] = topic
 
     r = requests.post(f"{base}/threads", data=data, timeout=30)
+    if not r.ok and topic:
+        # トピックタグが受け付けられなかったときは、タグなしで出す（投稿そのものは落とさない）
+        print(f"[threads] topic_tag rejected, retry without it: {r.text[:200]}")
+        data.pop("topic_tag", None)
+        r = requests.post(f"{base}/threads", data=data, timeout=30)
     r.raise_for_status()
     creation_id = r.json()["id"]
 
@@ -181,14 +189,15 @@ def lint_schedule(schedule: list) -> list:
 
 
 
-def post_instagram(text: str, image: str | None = None) -> str:
-    """Instagram投稿。画像が必須（IG APIの仕様）。IMAGE_BASE_URL の公開URLを使う"""
+def post_instagram(text: str, image: str | None = None, video: str | None = None) -> str:
+    """Instagram投稿。画像か動画が必須（IG APIの仕様）。IMAGE_BASE_URL の公開URLを使う
+    video（images/xxx.mp4）があればリールとして投稿する。リールはフォロワー以外にも届く"""
     if len(text) > 2200:
         raise ValueError(f"IGキャプション超過（{len(text)}/2200）")
-    if not image:
-        raise ValueError("Instagramは画像が必須です（imageを指定してください）")
+    if not image and not video:
+        raise ValueError("Instagramは画像か動画が必須です（image か video を指定してください）")
     if DRY_RUN:
-        return f"DRY ig: {text[:30]}… image={image}"
+        return f"DRY ig: {text[:30]}… image={image} video={video}"
     uid = os.environ.get("IG_USER_ID") or "me"
     tok = os.environ["IG_ACCESS_TOKEN"]
     img_base = os.environ.get("IMAGE_BASE_URL", "").rstrip("/")
@@ -196,13 +205,26 @@ def post_instagram(text: str, image: str | None = None) -> str:
         raise ValueError("IMAGE_BASE_URL が未設定です")
     base = f"https://graph.instagram.com/v21.0/{uid}"
 
-    r = requests.post(f"{base}/media", data={
-        "image_url": f"{img_base}/{os.path.basename(image)}",
-        "caption": text,
-        "access_token": tok,
-    }, timeout=60)
+    if video:
+        data = {"media_type": "REELS", "video_url": f"{img_base}/{os.path.basename(video)}",
+                "caption": text, "share_to_feed": "true", "access_token": tok}
+    else:
+        data = {"image_url": f"{img_base}/{os.path.basename(image)}", "caption": text, "access_token": tok}
+    r = requests.post(f"{base}/media", data=data, timeout=60)
     r.raise_for_status()
     creation_id = r.json()["id"]
+
+    if video:
+        # 動画は変換に時間がかかる。終わる（FINISHED）まで最大5分待つ
+        for _ in range(30):
+            time.sleep(10)
+            st = requests.get(f"https://graph.instagram.com/v21.0/{creation_id}",
+                              params={"fields": "status_code", "access_token": tok}, timeout=30).json()
+            code = st.get("status_code")
+            if code == "FINISHED":
+                break
+            if code == "ERROR":
+                raise ValueError(f"リールの動画処理に失敗しました: {st}")
 
     # 画像処理の完了を待ってから公開
     last = None
@@ -266,7 +288,12 @@ def main() -> int:
                 results[platform] = "unknown platform"
                 continue
             try:
-                results[platform] = fn(text_for(item, platform), image)
+                if platform == "instagram" and item.get("video"):
+                    results[platform] = fn(text_for(item, platform), image, item["video"])
+                elif platform == "threads" and item.get("topic"):
+                    results[platform] = fn(text_for(item, platform), image, item["topic"])
+                else:
+                    results[platform] = fn(text_for(item, platform), image)
             except Exception as e:
                 msg = str(e)
                 # Xが「同じ文章はもう投稿済み」と返した＝すでに出ている。失敗扱いにすると出し直し続けるので投稿済みにする

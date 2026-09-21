@@ -10,8 +10,8 @@
   "0914-x10": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
-      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint."
+      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
+      "skipped": "too late"
     }
   },
   "0914-pm": {
@@ -25,8 +25,8 @@
   "0914-x18": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
-      "x": "ERROR: 402 Payment Required\ncredits depleted"
+      "x": "ERROR: 402 Payment Required\ncredits depleted",
+      "skipped": "too late"
     }
   },
   "0914-ev": {
@@ -265,8 +265,8 @@
   "0921-x10": {
     "at": "2026-09-21T16:02:14.503551+09:00",
     "results": {
-      "skipped": "too late",
-      "x": "ERROR: 403 Forbidden\nYou are not allowed to create a Tweet with duplicate content."
+      "x": "ERROR: 403 Forbidden\nYou are not allowed to create a Tweet with duplicate content.",
+      "skipped": "too late"
     }
   },
   "0921-pm": {

@@ -261,5 +261,18 @@
       "x": "2101801385478193629",
       "threads": "17906482941519782"
     }
+  },
+  "0921-x10": {
+    "at": "2026-09-21T13:57:04.736548+09:00",
+    "results": {
+      "x": "ERROR: 403 Forbidden\nYou are not allowed to create a Tweet with duplicate content."
+    }
+  },
+  "0921-pm": {
+    "at": "2026-09-21T13:57:04.736548+09:00",
+    "results": {
+      "x": "ERROR: 403 Forbidden\nYou are not allowed to create a Tweet with duplicate content.",
+      "threads": "17987971215100530"
+    }
   }
 }

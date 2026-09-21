@@ -2,46 +2,46 @@
   "0914-am": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
       "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
+      "skipped": "too late",
       "threads": "18110047586468695"
     }
   },
   "0914-x10": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
-      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint."
+      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
+      "skipped": "too late"
     }
   },
   "0914-pm": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
       "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
+      "skipped": "too late",
       "threads": "18139405243718206"
     }
   },
   "0914-x18": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
-      "x": "ERROR: 402 Payment Required\ncredits depleted"
+      "x": "ERROR: 402 Payment Required\ncredits depleted",
+      "skipped": "too late"
     }
   },
   "0914-ev": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
       "x": "ERROR: 402 Payment Required\ncredits depleted",
+      "skipped": "too late",
       "threads": "18113246579086511"
     }
   },
   "0915-am": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
       "x": "ERROR: 402 Payment Required\ncredits depleted",
+      "skipped": "too late",
       "threads": "18130552945663648"
     }
   },
@@ -265,8 +265,8 @@
   "0921-x10": {
     "at": "2026-09-21T16:02:14.503551+09:00",
     "results": {
-      "skipped": "too late",
-      "x": "ERROR: 403 Forbidden\nYou are not allowed to create a Tweet with duplicate content."
+      "x": "ERROR: 403 Forbidden\nYou are not allowed to create a Tweet with duplicate content.",
+      "skipped": "too late"
     }
   },
   "0921-pm": {
@@ -306,6 +306,13 @@
     "results": {
       "threads": "18068263493502454",
       "x": "2102005093017252227"
+    }
+  },
+  "0922-am": {
+    "at": "2026-09-22T07:31:08.676653+09:00",
+    "results": {
+      "x": "2102163751093055830",
+      "threads": "18113755553585468"
     }
   }
 }

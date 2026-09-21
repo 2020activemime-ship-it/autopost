@@ -268,7 +268,12 @@ def main() -> int:
             try:
                 results[platform] = fn(text_for(item, platform), image)
             except Exception as e:
-                results[platform] = f"ERROR: {e}"
+                msg = str(e)
+                # Xが「同じ文章はもう投稿済み」と返した＝すでに出ている。失敗扱いにすると出し直し続けるので投稿済みにする
+                if "duplicate content" in msg:
+                    results[platform] = "OK (already posted)"
+                else:
+                    results[platform] = f"ERROR: {msg}"
         print(key, results)
         if not DRY_RUN:
             posted[key] = {"at": now.isoformat(), "results": results}

@@ -2,9 +2,9 @@
   "0914-am": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
+      "threads": "18110047586468695",
       "skipped": "too late",
-      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
-      "threads": "18110047586468695"
+      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint."
     }
   },
   "0914-x10": {
@@ -17,9 +17,9 @@
   "0914-pm": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
+      "threads": "18139405243718206",
       "skipped": "too late",
-      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
-      "threads": "18139405243718206"
+      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint."
     }
   },
   "0914-x18": {
@@ -32,17 +32,17 @@
   "0914-ev": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
+      "threads": "18113246579086511",
       "skipped": "too late",
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
-      "threads": "18113246579086511"
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "0915-am": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
+      "threads": "18130552945663648",
       "skipped": "too late",
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
-      "threads": "18130552945663648"
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "0915-x10": {
@@ -453,7 +453,7 @@
     }
   },
   "0924-ann": {
-    "at": "2026-09-24T20:29:53.889412+09:00",
+    "at": "2026-09-24T20:32:55.804772+09:00",
     "results": {
       "threads": "17919094083449738",
       "x": "ERROR: X文字数オーバー（284/280）。text_x で短い版を用意してください"
@@ -463,6 +463,13 @@
     "at": "2026-09-24T20:02:23.426978+09:00",
     "results": {
       "instagram": "17950781646287655"
+    }
+  },
+  "0924-boshu": {
+    "at": "2026-09-24T20:32:55.804772+09:00",
+    "results": {
+      "x": "ERROR: X文字数オーバー（318/280）。text_x で短い版を用意してください",
+      "threads": "18465073345186452"
     }
   }
 }

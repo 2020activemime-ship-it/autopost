@@ -2,47 +2,47 @@
   "0914-am": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "threads": "18110047586468695",
       "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
-      "skipped": "too late"
+      "skipped": "too late",
+      "threads": "18110047586468695"
     }
   },
   "0914-x10": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
-      "skipped": "too late"
+      "skipped": "too late",
+      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint."
     }
   },
   "0914-pm": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "threads": "18139405243718206",
       "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
-      "skipped": "too late"
+      "skipped": "too late",
+      "threads": "18139405243718206"
     }
   },
   "0914-x18": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
-      "skipped": "too late"
+      "skipped": "too late",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "0914-ev": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "threads": "18113246579086511",
       "x": "ERROR: 402 Payment Required\ncredits depleted",
-      "skipped": "too late"
+      "skipped": "too late",
+      "threads": "18113246579086511"
     }
   },
   "0915-am": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "threads": "18130552945663648",
       "x": "ERROR: 402 Payment Required\ncredits depleted",
-      "skipped": "too late"
+      "skipped": "too late",
+      "threads": "18130552945663648"
     }
   },
   "0915-x10": {
@@ -265,8 +265,8 @@
   "0921-x10": {
     "at": "2026-09-21T16:02:14.503551+09:00",
     "results": {
-      "x": "ERROR: 403 Forbidden\nYou are not allowed to create a Tweet with duplicate content.",
-      "skipped": "too late"
+      "skipped": "too late",
+      "x": "ERROR: 403 Forbidden\nYou are not allowed to create a Tweet with duplicate content."
     }
   },
   "0921-pm": {
@@ -337,8 +337,8 @@
   "0922-ann": {
     "at": "2026-09-23T02:58:38.624263+09:00",
     "results": {
-      "x": "ERROR: X文字数オーバー（286/280）。text_x で短い版を用意してください",
-      "skipped": "too late"
+      "skipped": "too late",
+      "x": "ERROR: X文字数オーバー（286/280）。text_x で短い版を用意してください"
     }
   },
   "0922-ig": {
@@ -455,9 +455,9 @@
   "0924-ann": {
     "at": "2026-09-25T03:16:03.349849+09:00",
     "results": {
-      "threads": "17919094083449738",
       "x": "ERROR: X文字数オーバー（284/280）。text_x で短い版を用意してください",
-      "skipped": "too late"
+      "skipped": "too late",
+      "threads": "17919094083449738"
     }
   },
   "0924-ig": {
@@ -469,9 +469,9 @@
   "0924-boshu": {
     "at": "2026-09-25T03:16:03.349849+09:00",
     "results": {
-      "threads": "18465073345186452",
       "x": "ERROR: X文字数オーバー（318/280）。text_x で短い版を用意してください",
-      "skipped": "too late"
+      "skipped": "too late",
+      "threads": "18465073345186452"
     }
   },
   "0924-ev": {
@@ -485,6 +485,13 @@
     "at": "2026-09-24T22:01:06.747155+09:00",
     "results": {
       "threads": "18027587000860140"
+    }
+  },
+  "0925-am": {
+    "at": "2026-09-25T07:31:03.141237+09:00",
+    "results": {
+      "x": "2103250891558244732",
+      "threads": "17948347515314094"
     }
   }
 }

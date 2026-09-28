@@ -1,0 +1,64 @@
+name: reels
+
+# 毎日の朝の投稿から、Instagramのリール動画を自動で作る。
+# パソコンが閉じていても、ここ（GitHub）が作って、autopost が時間になったら投稿する。
+
+on:
+  schedule:
+    - cron: "10 21 * * *"          # JST 06:10
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "何日先ぶんまで作るか"
+        default: "14"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reels
+  cancel-in-progress: false
+
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 日本語の明朝フォントを入れる
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk fonts-noto-cjk-extra
+          fc-list | grep -i serif | head -5 || true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install --quiet pillow imageio-ffmpeg
+
+      - name: リールを作る
+        run: python make_reels.py ${{ github.event.inputs.days || '14' }}
+
+      - name: できたものを保存する
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "新しく作るものはありませんでした"
+            exit 0
+          fi
+          git add schedule.json images/*.mp4
+          git commit -m "chore: make reels"
+          for i in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main || git rebase --abort
+            if git push origin HEAD:main; then
+              echo "保存しました"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "保存できませんでした" >&2
+          exit 1

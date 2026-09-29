@@ -2,9 +2,9 @@
   "0914-am": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
+      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
       "threads": "18110047586468695",
-      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint."
+      "skipped": "too late"
     }
   },
   "0914-x10": {
@@ -17,9 +17,9 @@
   "0914-pm": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
+      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
       "threads": "18139405243718206",
-      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint."
+      "skipped": "too late"
     }
   },
   "0914-x18": {
@@ -32,17 +32,17 @@
   "0914-ev": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
+      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "threads": "18113246579086511",
-      "x": "ERROR: 402 Payment Required\ncredits depleted"
+      "skipped": "too late"
     }
   },
   "0915-am": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "skipped": "too late",
+      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "threads": "18130552945663648",
-      "x": "ERROR: 402 Payment Required\ncredits depleted"
+      "skipped": "too late"
     }
   },
   "0915-x10": {
@@ -455,9 +455,9 @@
   "0924-ann": {
     "at": "2026-09-25T03:16:03.349849+09:00",
     "results": {
-      "skipped": "too late",
+      "x": "ERROR: X文字数オーバー（284/280）。text_x で短い版を用意してください",
       "threads": "17919094083449738",
-      "x": "ERROR: X文字数オーバー（284/280）。text_x で短い版を用意してください"
+      "skipped": "too late"
     }
   },
   "0924-ig": {
@@ -469,9 +469,9 @@
   "0924-boshu": {
     "at": "2026-09-25T03:16:03.349849+09:00",
     "results": {
-      "skipped": "too late",
+      "x": "ERROR: X文字数オーバー（318/280）。text_x で短い版を用意してください",
       "threads": "18465073345186452",
-      "x": "ERROR: X文字数オーバー（318/280）。text_x で短い版を用意してください"
+      "skipped": "too late"
     }
   },
   "0924-ev": {

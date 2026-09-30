@@ -1,0 +1,42 @@
+name: metrics
+
+on:
+  schedule:
+    - cron: "30 15 * * *"   # 毎日 JST 0:30（その日の投稿の数字がそろってから）
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "1=件数だけ表示 / 0=本番"
+        default: "0"
+
+permissions:
+  contents: write
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: fetch metrics
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || '0' }}
+        run: |
+          python fetch_metrics.py
+          git config user.name  "autopost-bot"
+          git config user.email "autopost-bot@users.noreply.github.com"
+          git add metrics.json || true
+          if ! git diff --cached --quiet; then
+            git commit -q -m "chore: update metrics"
+            for try in 1 2 3; do git pull -q --rebase && git push -q && break; done
+          fi

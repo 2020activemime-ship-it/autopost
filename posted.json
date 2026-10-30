@@ -2303,8 +2303,8 @@
   "1030-x18": {
     "at": "2026-10-31T02:46:23.004860+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
-      "skipped": "too late"
+      "skipped": "too late",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1030-reel2": {
@@ -2314,7 +2314,7 @@
     }
   },
   "1030-ev": {
-    "at": "2026-10-31T02:46:23.004860+09:00",
+    "at": "2026-10-31T02:49:24.527420+09:00",
     "results": {
       "x": "ERROR: 402 Payment Required\ncredits depleted",
       "threads": "18009218816994558"

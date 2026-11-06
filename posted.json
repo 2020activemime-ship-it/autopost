@@ -2,9 +2,9 @@
   "0914-am": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
       "skipped": "too late",
-      "threads": "18110047586468695"
+      "threads": "18110047586468695",
+      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint."
     }
   },
   "0914-x10": {
@@ -17,9 +17,9 @@
   "0914-pm": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint.",
       "skipped": "too late",
-      "threads": "18139405243718206"
+      "threads": "18139405243718206",
+      "x": "ERROR: 403 Forbidden\nYour client app is not configured with the appropriate oauth1 app permissions for this endpoint."
     }
   },
   "0914-x18": {
@@ -32,17 +32,17 @@
   "0914-ev": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18113246579086511"
+      "threads": "18113246579086511",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "0915-am": {
     "at": "2026-09-15T15:35:50.380491+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18130552945663648"
+      "threads": "18130552945663648",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "0915-x10": {
@@ -455,9 +455,9 @@
   "0924-ann": {
     "at": "2026-09-25T03:16:03.349849+09:00",
     "results": {
-      "x": "ERROR: X文字数オーバー（284/280）。text_x で短い版を用意してください",
       "skipped": "too late",
-      "threads": "17919094083449738"
+      "threads": "17919094083449738",
+      "x": "ERROR: X文字数オーバー（284/280）。text_x で短い版を用意してください"
     }
   },
   "0924-ig": {
@@ -469,9 +469,9 @@
   "0924-boshu": {
     "at": "2026-09-25T03:16:03.349849+09:00",
     "results": {
-      "x": "ERROR: X文字数オーバー（318/280）。text_x で短い版を用意してください",
       "skipped": "too late",
-      "threads": "18465073345186452"
+      "threads": "18465073345186452",
+      "x": "ERROR: X文字数オーバー（318/280）。text_x で短い版を用意してください"
     }
   },
   "0924-ev": {
@@ -2148,9 +2148,9 @@
   "1027-ev": {
     "at": "2026-10-28T03:02:07.238786+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "17975513589154586"
+      "threads": "17975513589154586",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1027-q": {
@@ -2162,9 +2162,9 @@
   "1028-am": {
     "at": "2026-10-28T13:31:51.872492+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "17951872821057064"
+      "threads": "17951872821057064",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1028-x10": {
@@ -2177,9 +2177,9 @@
   "1028-pm": {
     "at": "2026-10-28T18:16:45.349016+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18491529778104938"
+      "threads": "18491529778104938",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1028-reel": {
@@ -2198,9 +2198,9 @@
   "1028-ev": {
     "at": "2026-10-29T03:01:49.766728+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18132645109827152"
+      "threads": "18132645109827152",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1028-q": {
@@ -2212,9 +2212,9 @@
   "1029-am": {
     "at": "2026-10-29T13:32:45.576399+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18221657650356058"
+      "threads": "18221657650356058",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1029-x10": {
@@ -2227,9 +2227,9 @@
   "1029-pm": {
     "at": "2026-10-29T18:18:00.336096+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "17945529777087231"
+      "threads": "17945529777087231",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1029-reel": {
@@ -2260,9 +2260,9 @@
   "1029-ev": {
     "at": "2026-10-30T03:01:49.462005+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18112720444894526"
+      "threads": "18112720444894526",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1029-q": {
@@ -2274,9 +2274,9 @@
   "1030-am": {
     "at": "2026-10-30T13:31:43.676354+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18126372118910496"
+      "threads": "18126372118910496",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1030-x10": {
@@ -2289,9 +2289,9 @@
   "1030-pm": {
     "at": "2026-10-30T18:16:25.861049+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18098873756545606"
+      "threads": "18098873756545606",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1030-reel": {
@@ -2316,9 +2316,9 @@
   "1030-ev": {
     "at": "2026-10-31T03:01:31.014191+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18009218816994558"
+      "threads": "18009218816994558",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1030-q": {
@@ -2330,9 +2330,9 @@
   "1031-am": {
     "at": "2026-10-31T13:32:50.626124+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18061471541553361"
+      "threads": "18061471541553361",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1031-x10": {
@@ -2345,9 +2345,9 @@
   "1031-pm": {
     "at": "2026-10-31T18:17:43.251514+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "17935242498147405"
+      "threads": "17935242498147405",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1031-reel": {
@@ -2378,9 +2378,9 @@
   "1031-ev": {
     "at": "2026-11-01T03:02:16.197206+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "17878180710576714"
+      "threads": "17878180710576714",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1031-q": {
@@ -2392,9 +2392,9 @@
   "1101-am": {
     "at": "2026-11-01T13:32:25.024212+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18344293054280618"
+      "threads": "18344293054280618",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1101-x10": {
@@ -2407,9 +2407,9 @@
   "1101-pm": {
     "at": "2026-11-01T18:17:21.521353+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18149019283562656"
+      "threads": "18149019283562656",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1101-reel": {
@@ -2434,9 +2434,9 @@
   "1101-ev": {
     "at": "2026-11-02T07:36:02.424080+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "17980488999137174"
+      "threads": "17980488999137174",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1101-q": {
@@ -2448,9 +2448,9 @@
   "1102-am": {
     "at": "2026-11-02T13:31:30.716680+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18053104910815465"
+      "threads": "18053104910815465",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1102-x10": {
@@ -2463,9 +2463,9 @@
   "1102-pm": {
     "at": "2026-11-02T18:16:31.854160+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18119043944014285"
+      "threads": "18119043944014285",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1102-reel": {
@@ -2496,9 +2496,9 @@
   "1102-ev": {
     "at": "2026-11-03T05:38:36.272929+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18133579666701829"
+      "threads": "18133579666701829",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1102-q": {
@@ -2510,9 +2510,9 @@
   "1103-am": {
     "at": "2026-11-03T13:31:33.659691+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "17906691552354906"
+      "threads": "17906691552354906",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1103-x10": {
@@ -2525,9 +2525,9 @@
   "1103-pm": {
     "at": "2026-11-03T19:29:56.446432+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18090108461274360"
+      "threads": "18090108461274360",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1103-reel": {
@@ -2552,9 +2552,9 @@
   "1103-ev": {
     "at": "2026-11-04T03:16:23.483164+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "17906439687599794"
+      "threads": "17906439687599794",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1103-q": {
@@ -2566,9 +2566,9 @@
   "1104-am": {
     "at": "2026-11-04T13:30:34.750819+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18116264951053581"
+      "threads": "18116264951053581",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1104-x10": {
@@ -2581,9 +2581,9 @@
   "1104-pm": {
     "at": "2026-11-04T18:15:47.728672+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "17995615892848913"
+      "threads": "17995615892848913",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1104-reel": {
@@ -2614,9 +2614,9 @@
   "1104-ev": {
     "at": "2026-11-05T05:40:35.567360+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18578310742078894"
+      "threads": "18578310742078894",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1104-q": {
@@ -2628,9 +2628,9 @@
   "1105-am": {
     "at": "2026-11-05T13:31:51.953687+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18119317381795413"
+      "threads": "18119317381795413",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1105-x10": {
@@ -2643,9 +2643,9 @@
   "1105-pm": {
     "at": "2026-11-05T18:17:33.208953+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18108452372259047"
+      "threads": "18108452372259047",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1105-reel": {
@@ -2670,9 +2670,9 @@
   "1105-ev": {
     "at": "2026-11-06T03:01:49.008504+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18236850106323525"
+      "threads": "18236850106323525",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1105-q": {
@@ -2684,9 +2684,9 @@
   "1106-am": {
     "at": "2026-11-06T13:30:45.433661+09:00",
     "results": {
-      "x": "ERROR: 402 Payment Required\ncredits depleted",
       "skipped": "too late",
-      "threads": "18138678088730214"
+      "threads": "18138678088730214",
+      "x": "ERROR: 402 Payment Required\ncredits depleted"
     }
   },
   "1106-x10": {
@@ -2697,7 +2697,7 @@
     }
   },
   "1106-pm": {
-    "at": "2026-11-06T18:11:33.902208+09:00",
+    "at": "2026-11-06T18:14:35.784100+09:00",
     "results": {
       "x": "ERROR: 402 Payment Required\ncredits depleted",
       "threads": "18080915174562494"

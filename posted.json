@@ -2789,8 +2789,8 @@
     "at": "2026-11-08T03:29:19.010927+09:00",
     "results": {
       "x": "ERROR: 402 Payment Required\ncredits depleted",
-      "threads": "18110976152250287",
-      "skipped": "too late"
+      "skipped": "too late",
+      "threads": "18110976152250287"
     }
   },
   "1107-q": {

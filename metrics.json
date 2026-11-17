@@ -1629,8 +1629,8 @@
   "updated": "2026-10-14T05:46+09:00"
  },
  "_errors": {
-  "threads": "400 Client Error: Bad Request for url: https://graph.threads.net/v1.0/17906691552354906/insights?metric=views%2Clikes%2Creplies%2Creposts%2Cquotes%2Cshares&access_token=THAAPKNCdDQ4lBYlk0ZAWhNc0dURjZA",
-  "instagram": "400 Client Error: Bad Request for url: https://graph.instagram.com/v21.0/18110905756917683/insights?metric=views%2Creach%2Clikes%2Ccomments%2Cshares%2Csaved%2Ctotal_interactions&access_token=IGAAZAhwL"
+  "threads": "400 Client Error: Bad Request for url: https://graph.threads.net/v1.0/18116264951053581/insights?metric=views%2Clikes%2Creplies%2Creposts%2Cquotes%2Cshares&access_token=THAAPKNCdDQ4lBYlk0ZAWhNc0dURjZA",
+  "instagram": "400 Client Error: Bad Request for url: https://graph.instagram.com/v21.0/17939198988401131/insights?metric=views%2Creach%2Clikes%2Ccomments%2Cshares%2Csaved%2Ctotal_interactions&access_token=IGAAZAhwL"
  },
  "1001-am": {
   "at": "2026-10-01T07:49:36.917489+09:00",
